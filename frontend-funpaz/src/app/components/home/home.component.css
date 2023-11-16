@@ -1,0 +1,34 @@
+/* CONTAINER INFORMATION */
+.container-information {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.container-information .col-md-4 {
+  text-align: center;
+}
+
+.footer-link {
+  margin-left: 8px;
+}
+
+.strong-number {
+  margin-left: 8px;
+}
+
+/* CONTAINER WIDGET */
+.container-widgets {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 10%;
+  margin-right: 10%;
+  align-items: center;
+  text-align: center;
+}
+/* CONTAINER LINKS */
+.container-links {
+  margin-top: 5%;
+  text-align: center;
+}

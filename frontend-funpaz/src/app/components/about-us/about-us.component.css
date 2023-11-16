@@ -1,0 +1,18 @@
+/* Estilo para las características (featurettes) */
+.container-featurette {
+  margin-top: 5%; /* Margen superior */
+  margin-bottom: 5%; /* Margen inferior */
+  margin-left: 10%; /* Margen izquierdo */
+  margin-right: 10%; /* Margen derecho */
+  align-items: center; /* Alinea elementos al centro */
+  text-align: center; /* Alinea el texto al centro */
+}
+
+/* Estilo para el encabezado de características */
+.featurette-heading {
+  letter-spacing: -0.05rem; /* Espaciado entre letras negativo */
+}
+
+.row-about-us{
+  text-align: center;
+}

@@ -1,0 +1,225 @@
+<main>
+  <app-carousel></app-carousel>
+
+  <!-- CONTAINER INFORMATION -->
+  <div class="container-information">
+    <div class="row">
+      <div class="col-md-4">
+        <h4>Correo Electrónico</h4>
+        <a
+          href="mailto:secretariaipsfunpaz@gmail.com"
+          target="_blank"
+          class="footer-link"
+          style="text-decoration: none"
+        >
+          <i class="bi bi-envelope" style="font-size: 2rem"></i>
+          <a style="margin-left: 8px; text-align: center"
+            >secretariaipsfunpaz@gmail.com</a
+          >
+        </a>
+      </div>
+
+      <div class="col-md-4">
+        <h4>Contacto</h4>
+        <h6>Linea de Atención General</h6>
+        <a
+          href="https://wa.me/573330333946"
+          target="_blank"
+          style="text-decoration: none"
+        >
+          <i class="bi bi-whatsapp" style="font-size: 2rem; color: #25d366"></i>
+          <strong>(+57) 333 0333 946</strong>
+        </a>
+      </div>
+
+      <div class="col-md-4">
+        <h3>Ubicación</h3>
+
+        <h6>
+          <i class="bi bi-geo-alt-fill" style="font-size: 2rem"></i>
+          <a
+            href="https://www.google.es/maps/place/Funpaz/@5.1021362,-75.5399398,17z/data=!3m1!4b1!4m16!1m9!4m8!1m0!1m6!1m2!1s0x8e47702d33c60cdf:0x77785e684c1d99d8!2sFunpaz,+Manizales,+Caldas!2m2!1d-75.5373649!2d5.1021309!3m5!1s0x8e47702d33c60cdf:0x77785e684c1d99d8!8m2!3d5.1021309!4d-75.5373649!16s%2Fg%2F11c6vtqfwj?entry=ttu"
+            id="como_llegar"
+            name="Cómo llegar"
+            target="_blank"
+            style="text-decoration: none"
+          >
+            Kilómetro 4, vía Cuchilla del Salado Manizales-Caldas-Colombia
+          </a>
+        </h6>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURETTES -->
+  <div class="container px-4 text-center">
+    <div class="row gx-5">
+      <div class="col">
+        <h2 class="featurette-heading fw-normal lh-1 text-primary">
+          <i class="bi bi-hospital-fill"></i>
+          FUNPAZ I.P.S - Clínica de Salud Mental
+        </h2>
+        <p class="lead">
+          Funpaz juega un papel fundamental en la atención de pacientes con
+          enfermedades mentales y adicciones en nuestra región. La importancia
+          de nuestra labor radica en la creciente demanda de atención en salud
+          mental en esta área geográfica. La población en nuestra región
+          presenta un alto riesgo demográfico de desarrollar patologías
+          psiquiátricas, un hecho ampliamente documentado en diversos ámbitos de
+          la salud. Esto se refleja claramente en la falta de oportunidad en la
+          aceptación de pacientes que provienen de los diferentes servicios de
+          urgencias de las ESE e IPS. Estos pacientes a menudo enfrentan esperas
+          de hasta 5 días debido al aumento en la ocupación de camas en las IPS
+          psiquiátricas.
+        </p>
+      </div>
+      <div class="col">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15896.038788613372!2d-75.5373649!3d5.1021309!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e47702d33c60cdf%3A0x77785e684c1d99d8!2sFunpaz!5e0!3m2!1sen!2sco!4v1698013786730!5m2!1sen!2sco"
+          width="auto"
+          height="100%"
+          style="border: 0; border-radius: 15px"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTAINER WIDGETS -->
+  <div class="container-widgets">
+    <div class="row">
+      <div class="col-lg-4">
+        <h2 class="fw-normal">Agendar cita</h2>
+        <i class="bi bi-clipboard-pulse" style="font-size: 5rem"></i>
+        <p>Solicita tu cita con uno de nuestros especialistas.</p>
+        <p>
+          <a
+            [ngClass]="{
+              btn: true,
+              'btn-light': darkTheme,
+              'btn-dark': !darkTheme
+            }"
+            href="/appointment"
+            >Agendar &raquo;</a
+          >
+        </p>
+      </div>
+      <div class="col-lg-4">
+        <h2 class="fw-normal">Conócenos</h2>
+        <i class="bi bi-hospital" style="font-size: 5rem"></i>
+        <p>Conoce las instalaciones y aspectos importantes de FUNPAZ.</p>
+        <p>
+          <a
+            [ngClass]="{
+              btn: true,
+              'btn-light': darkTheme,
+              'btn-dark': !darkTheme
+            }"
+            href="/about-us"
+            >Ir &raquo;</a
+          >
+        </p>
+      </div>
+      <div class="col-lg-4">
+        <h2 class="fw-normal">Servicios</h2>
+        <i class="bi bi-house-gear" style="font-size: 5rem"></i>
+        <p>Descubre nuestros servicios y todo lo que FUNPAZ puede brindarte.</p>
+        <p>
+          <a
+            [ngClass]="{
+              btn: true,
+              'btn-light': darkTheme,
+              'btn-dark': !darkTheme
+            }"
+            href="/services"
+            >Servicios &raquo;</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTAINER LINKS -->
+  <div class="container-links">
+    <h2 class="text-primary">
+      <i class="bi bi-puzzle" style="font-size: 3rem"></i> Enlaces de interés
+    </h2>
+    <div class="container text-center">
+      <div class="p-3">
+        <div class="card border-primary">
+          <div class="card-body">
+            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+              <div class="col">
+                <a
+                  href="https://www.asmetsalud.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="../../../assets/media/Convenios/asmetsalud.png"
+                    alt="asmetsalud"
+                    class="card-img-top"
+                  />
+                </a>
+              </div>
+              <div class="col">
+                <a
+                  href="https://www.cosmitet.net/Cosmitet/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="../../../assets/media/Convenios/cosmitet.png"
+                    alt="cosmitet"
+                    class="card-img-top"
+                  />
+                </a>
+              </div>
+              <div class="col">
+                <a
+                  href="https://www.famisanar.com.co/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="../../../assets/media/Convenios/famisanar.png"
+                    alt="famisanar"
+                    class="card-img-top"
+                  />
+                </a>
+              </div>
+              <div class="col">
+                <a
+                  href="https://www.nuevaeps.com.co/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="../../../assets/media/Convenios/nuevaeps.png"
+                    alt="nuevaeps"
+                    class="card-img-top"
+                  />
+                </a>
+              </div>
+              <div class="col">
+                <a
+                  href="https://saludtotal.com.co/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="../../../assets/media/Convenios/saludtotal.png"
+                    alt="saludtotal"
+                    class="card-img-top"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

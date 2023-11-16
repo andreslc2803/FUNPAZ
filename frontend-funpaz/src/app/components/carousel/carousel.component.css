@@ -1,0 +1,28 @@
+/* CUSTOMIZE THE CAROUSEL
+  -------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  margin-bottom: 2rem;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+  height: 32rem;
+}
+
+.blur-image {
+  filter: blur(4px); /* Ajusta el valor de desenfoque según tu preferencia (menor valor para menos difuminado) */
+  transition: filter 0.3s; /* Agrega una transición suave para el efecto de difuminado */
+}
+
+.container {
+  font-family:Verdana, Geneva, Tahoma, sans-serif; /* Copperplate como primera opción y fuentes sans-serif como alternativa */
+}
+
+

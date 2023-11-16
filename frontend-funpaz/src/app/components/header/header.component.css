@@ -1,0 +1,26 @@
+.container-header{
+  position: relative;
+}
+
+/* Estilos personalizados */
+.logo {
+  width: 120px; /* Ajusta según tus necesidades */
+  margin-right: 35px; /* Ajusta según tus necesidades */
+}
+
+.navbar .dropdown-menu {
+  background-color: #007BFF; /* Cambia este valor al color primary que desees */
+}
+
+.navbar .dropdown-item {
+  color: #fff; /* Cambia este valor al color de texto que desees */
+}
+
+.navbar .dropdown-menu a.dropdown-item:hover {
+  background-color: #0056b3; /* Cambia este valor al color primary que desees al resaltarlo */
+  color: #fff; /* Cambia este valor al color de texto que desees cuando se resalte */
+}
+
+.spacer {
+  height: 10%; /* Esto es el equivalente al 10% de margen inferior */
+}

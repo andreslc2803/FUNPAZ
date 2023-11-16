@@ -1,0 +1,208 @@
+<div class="container-text">
+  <div class="row">
+    <h4 class="featurette-heading text-primary fs-6">
+      FUNPAZ I.P.S - Clínica de Salud Mental
+    </h4>
+    <h4 class="text-primary fs-2" style="text-align: center; margin-top: auto">
+      CONTÁCTANOS
+    </h4>
+    <p class="lead">
+      Puede utilizar este medio para enviar mensajes a Funpaz I.P.S, una clínica
+      de salud mental comprometida con su bienestar. Al enviar sus consultas o
+      inquietudes a través de este canal, puede estar seguro de que su mensaje
+      será recibido y atendido de manera oportuna. Nuestro equipo de
+      profesionales altamente capacitados está aquí para escuchar y ofrecer el
+      apoyo que necesita. En un plazo de cinco días hábiles, recibirá una
+      respuesta por medio de el correo electrónico que hayas registrado en el
+      formulario, para brindarle la información que necesita o programar una
+      cita. Su salud mental es una prioridad para nosotros, y estamos dispuestos
+      a acompañarlo en su camino hacia el bienestar.
+    </p>
+  </div>
+</div>
+
+<!-- contact  -->
+<div class="container-contact">
+  <div class="row">
+    <div class="col-md-6">
+      <h5 class="fw-normal">
+        <i class="bi bi-geo-alt-fill" style="font-size: 2rem"></i>
+        ESTAMOS UBICADOS
+      </h5>
+      <h6>Kilómetro 4, via cuchilla del Salado - Manizales-Caldas-Colombia</h6>
+      <a
+        href="https://www.google.es/maps/place/Funpaz/@5.1021362,-75.5399398,17z/data=!3m1!4b1!4m16!1m9!4m8!1m0!1m6!1m2!1s0x8e47702d33c60cdf:0x77785e684c1d99d8!2sFunpaz,+Manizales,+Caldas!2m2!1d-75.5373649!2d5.1021309!3m5!1s0x8e47702d33c60cdf:0x77785e684c1d99d8!8m2!3d5.1021309!4d-75.5373649!16s%2Fg%2F11c6vtqfwj?entry=ttu"
+        id="como_llegar"
+        name="Cómo llegar"
+        target="_blank"
+        style="text-decoration: none"
+      >
+        ¿Cómo llegar?
+        <i class="bi bi-globe-americas" style="font-size: 1rem"></i>
+      </a>
+    </div>
+    <div class="col-md-6">
+      <h4 class="fw-normal">
+        <i class="bi bi-telephone" style="font-size: 2rem"></i>
+        ESCRIBENOS O LLÁMANOS
+      </h4>
+      <h6>FUNPAZ I.P.S - CLÍNICA DE SALUD MENTAL</h6>
+      <p class="elementor-icon-box-description">
+        Teléfono
+        <a href="https://wa.me/573330333946" target="_blank">
+          <strong> (+57) 333 0333 946</strong>
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- formulario -->
+<div class="container-sm">
+  <div class="row">
+    <!-- imagen -->
+    <div class="col-md-4">
+      <div class="image-container">
+        <img
+          src="../../../assets/media/contacto.png"
+          alt="imagen-cita"
+          class="image-contact"
+        />
+      </div>
+    </div>
+    <!-- formulario -->
+    <div class="col-md-8">
+      <div class="container-form-contact">
+        <div class="row justify-content-center">
+          <div class="card border-primary">
+            <div class="card-body">
+              <h2 style="text-align: center">
+                <i class="bi bi-send"></i> Envíanos un mensaje
+              </h2>
+
+              <form
+                [formGroup]="form"
+                (ngSubmit)="enviar()"
+                enctype="multipart/form-data"
+                style="width: 100%; max-width: 100%; margin: 0 auto"
+              >
+                <div class="row">
+                  <div class="col-12 col-md-4">
+                    <div class="mb-2 small">
+                      <label for="nombre" class="form-label">Nombre(s)</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="nombre"
+                        formControlName="nombre"
+                      />
+                      <small *ngIf="nombreNoValido" class="text-danger"
+                        >Ingrese el nombre (mínimo 2 caracteres)</small
+                      >
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <div class="mb-2 small">
+                      <label for="apellido" class="form-label">Apellidos</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="apellido"
+                        formControlName="apellido"
+                      />
+                      <small *ngIf="apellidoNoValido" class="text-danger"
+                        >Ingrese los apellidos (mínimo 2 caracteres)</small
+                      >
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <div class="mb-2 small">
+                      <label for="correo" class="form-label"
+                        >Correo electrónico</label
+                      >
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="correo"
+                        formControlName="correo"
+                      />
+                      <small *ngIf="correoNoValido" class="text-danger"
+                        >Ingrese un correo válido</small
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-2 small">
+                  <label for="descripcion" class="form-label"
+                    >Descripción del mensaje</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="descripcion"
+                    rows="3"
+                    formControlName="descripcion"
+                  ></textarea>
+                  <small *ngIf="descripcionNoValido" class="text-danger"
+                    >La descripción de la cita es requerida</small
+                  >
+                </div>
+
+                <!-- Archivo -->
+                <div class="mb-2 small d-flex justify-content-left">
+                  <input
+                    type="file"
+                    id="archivo"
+                    name="archivo"
+                    formControlName="archivo"
+                    (change)="onFileSelected($event)"
+                    class="form-control"
+                    accept=".pdf, .doc, .jpg, .jpeg, .png, .zip, .rar"
+                  />
+                </div>
+                <p class="small">
+                  <em>
+                    Si desea agregar varios archivos, recuerde adjuntarlos en un
+                    (1) archivo comprimido .zip o .rar. El tamaño máximo
+                    permitido del archivo adjunto es de 25MB. Se permite
+                    adjuntar archivos con extensiones .pdf, .doc, .jpg, .jpeg,
+                    .png, .zip, .rar.
+                  </em>
+                </p>
+
+                <!-- reCAPTCHA -->
+                <div class="mb-2 d-flex justify-content-center">
+                  <re-captcha
+                    #reCaptcha
+                    (resolved)="resolved($event)"
+                    (errored)="onError($event)"
+                    errorMode="handled"
+                    [siteKey]="siteKey"
+                    class="align-self-center"
+                    style="transform: scale(0.85)"
+                  ></re-captcha>
+                </div>
+
+                <!-- Botones -->
+                <div class="form-buttons text-center">
+                  <button type="submit" class="btn btn-outline-success">
+                    Enviar
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger"
+                    (click)="limpiar()"
+                  >
+                    Limpiar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
