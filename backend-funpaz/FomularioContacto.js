@@ -3,9 +3,9 @@ const nodemailer = require("nodemailer");
 /**
  * Configura y envía un correo electrónico con los datos del formulario.
  * @param {object} formulario - Objeto que contiene los datos del formulario.
- * @param {object} archivoAdjunto - Opcional. Objeto que representa el archivo adjunto.
+ * @param {object} archivosAdjuntos - Opcional. Objeto que representa el archivo adjunto.
  */
-module.exports = (formulario, archivoAdjunto) => {
+module.exports = (formulario, archivosAdjuntos) => {
   // Configura el transporte de correo utilizando el servicio de Gmail.
   var transporter = nodemailer.createTransport({
     service: "gmail",
@@ -28,17 +28,15 @@ module.exports = (formulario, archivoAdjunto) => {
       <strong>Apellidos:</strong> ${formulario.apellido} <br/>
       <strong>E-mail:</strong> ${formulario.correo} <br/>
       <strong>Descripción del mensaje:</strong> ${formulario.descripcion}
-    `
+    `,
   };
 
-  // Verifica si hay un archivo adjunto y lo agrega a las opciones del correo.
-  if (archivoAdjunto) {
-    mailOptions.attachments = [
-      {
-        filename: archivoAdjunto.originalname,
-        content: archivoAdjunto.buffer,
-      },
-    ];
+  // Verifica si hay archivos adjuntos y los agrega a las opciones del correo.
+  if (archivosAdjuntos && archivosAdjuntos.length > 0) {
+    mailOptions.attachments = archivosAdjuntos.map((adjunto) => ({
+      filename: adjunto.originalname,
+      content: adjunto.buffer,
+    }));
   }
 
   // Envía el correo electrónico utilizando el transporte configurado.

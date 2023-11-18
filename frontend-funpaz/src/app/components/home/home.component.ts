@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   darkTheme: boolean = false;
+
+  emailAddress = 'andrescarvajal2803londono@gmail.com';
+  emailLink = `mailto:${this.emailAddress}`;
 }

@@ -10,15 +10,15 @@
       AGENDAR CITA
     </h4>
     <p class="lead">
-      Su cita en la clínica de salud mental FUNPAZ I.P.S quedará agendada una
-      vez que complete el formulario y lo envíe de manera adecuada. El
-      formulario debe ser completado con información precisa y actualizada,
-      incluyendo su tipo de identificación, número de identificación, nombre,
-      apellido, correo electrónico, número de teléfono. El formulario también
-      incluye un campo especificado para que brinde una breve descripción del
-      motivo de la cita. Una vez que el formulario sea enviado, un representante
-      de FUNPAZ I.P.S se comunicará con usted para confirmar su cita y
-      proporcionarle más información sobre su proceso de atención.
+      Su cita en la clínica de salud mental FUNPAZ I.P.S quedará solicitada una
+      vez que se envíe de manera adecuada. El formulario debe ser completado con
+      información precisa y actualizada, incluyendo su tipo de identificación,
+      número de identificación, nombre, apellido, correo electrónico, número de
+      teléfono. El formulario también incluye un campo especificado para que
+      brinde una breve descripción del motivo de la cita. Una vez que el
+      formulario sea enviado, un representante de la entidad se comunicará con
+      usted para confirmar su cita y proporcionarle más información sobre su
+      proceso de atención.
     </p>
   </div>
 
@@ -83,7 +83,7 @@
                     </div>
                   </div>
                 </div>
-
+                <!-- INGRESAR EL TIPO DE EPS (SELECT) -->
                 <div class="row">
                   <div class="col-12 col-md-6">
                     <div class="mb-2 small">
@@ -168,22 +168,20 @@
                 <div class="mb-2 small d-flex justify-content-left">
                   <input
                     type="file"
-                    id="archivo"
-                    name="archivo"
-                    formControlName="archivo"
+                    id="archivos"
+                    name="archivos"
+                    formControlName="archivos"
                     (change)="onFileSelected($event)"
                     class="form-control"
-                    accept=".pdf, .doc, .jpg, .jpeg, .png, .zip, .rar"
+                    multiple
+                    accept=".pdf"
                   />
                 </div>
                 <p class="small">
                   <em>
                     Por favor adjunte ORDEN MÉDICA, AUTORIZACIÓN DE EPS Y
-                    DOCUMENTOS DE IDENTIDAD, según sea el caso. Si desea agregar
-                    varios archivos, recuerde adjuntarlos en un (1) archivo
-                    comprimido .zip o .rar. El tamaño máximo permitido del
-                    archivo adjunto es de 25MB. Se permite adjuntar archivos con
-                    extensiones .pdf, .doc, .jpg, .jpeg, .png, .zip, .rar.
+                    DOCUMENTOS DE IDENTIDAD POR AMBOS LADOS en archivos .pdf. El tamaño máximo
+                    permitido del archivo adjunto es de 8MB.
                   </em>
                 </p>
 

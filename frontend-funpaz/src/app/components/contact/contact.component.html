@@ -84,7 +84,7 @@
                 [formGroup]="form"
                 (ngSubmit)="enviar()"
                 enctype="multipart/form-data"
-                style="width: 100%; max-width: 100%; margin: 0 auto"
+                style="width: 100%; max-width: 100%;"
               >
                 <div class="row">
                   <div class="col-12 col-md-4">
@@ -152,35 +152,35 @@
                 <div class="mb-2 small d-flex justify-content-left">
                   <input
                     type="file"
-                    id="archivo"
-                    name="archivo"
-                    formControlName="archivo"
+                    id="archivos"
+                    name="archivos"
+                    formControlName="archivos"
                     (change)="onFileSelected($event)"
                     class="form-control"
-                    accept=".pdf, .doc, .jpg, .jpeg, .png, .zip, .rar"
+                    multiple
+                    accept=".pdf, .jpg, .jpeg, .png"
                   />
                 </div>
                 <p class="small">
                   <em>
-                    Si desea agregar varios archivos, recuerde adjuntarlos en un
-                    (1) archivo comprimido .zip o .rar. El tamaño máximo
-                    permitido del archivo adjunto es de 25MB. Se permite
-                    adjuntar archivos con extensiones .pdf, .doc, .jpg, .jpeg,
-                    .png, .zip, .rar.
+                    Ajunte archivos con formato .pdf, .jpg, .jpeg, .png. El
+                    tamaño máximo permitido por todos los archivos adjuntos es
+                    de 8MB.
                   </em>
                 </p>
 
                 <!-- reCAPTCHA -->
                 <div class="mb-2 d-flex justify-content-center">
                   <re-captcha
-                    #reCaptcha
                     (resolved)="resolved($event)"
                     (errored)="onError($event)"
                     errorMode="handled"
+                    formControlName="recaptchaReactive"
                     [siteKey]="siteKey"
                     class="align-self-center"
                     style="transform: scale(0.85)"
-                  ></re-captcha>
+                  >
+                  </re-captcha>
                 </div>
 
                 <!-- Botones -->
@@ -204,5 +204,3 @@
     </div>
   </div>
 </div>
-
-

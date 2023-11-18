@@ -15,9 +15,9 @@ import { RecaptchaService } from 'src/app/services/recaptcha.service';
 })
 export class AppointmentComponent {
   protected siteKey = AppConfig.reCaptchaSiteKey;
-  form!: FormGroup;   //inicialmente puede tener un valor null o undefined el formulario
-  archivoSeleccionado: File | null = null;
-  tokenCaptcha: any | null = null;
+  form!: FormGroup;
+  archivosSeleccionados: File[] = [];
+  tokenCaptcha: string | null = null;
 
   constructor(
     public _MessageService: MessageAppointmentService,
@@ -27,9 +27,16 @@ export class AppointmentComponent {
     this.crearFormulario();
   }
 
-  enviar = async () => {
+  async enviar() {
     if (!this.isCaptchaValid()) {
       this.mostrarErrorCaptcha();
+      return;
+    }
+
+    // Verificar si no se ha seleccionado un archivo
+    if (this.archivosSeleccionados.length === 0) {
+      console.log('Archivo no seleccionado');
+      this.mostrarErrorArchivo();
       return;
     }
 
@@ -38,19 +45,22 @@ export class AppointmentComponent {
       return;
     }
 
-    if (this.archivoSeleccionado) {
-      const fileExtension = this.obtenerExtensionArchivo();
-      if (!this.esExtensionPermitida(fileExtension)) {
-        this.mostrarErrorExtensionArchivo();
-        return;
-      }
+    if (this.archivosSeleccionados.length > 0) {
+      for (const archivo of this.archivosSeleccionados) {
+        const fileExtension = this.obtenerExtensionArchivo(archivo);
+        if (!this.esExtensionPermitida(fileExtension)) {
+          this.mostrarErrorExtensionArchivo();
+          return;
+        }
 
-      if (this.tamanoArchivoExcedeLimite()) {
-        this.mostrarErrorTamanoArchivo();
-        return;
+        if (this.tamanoArchivoExcedeLimite(archivo)) {
+          this.mostrarErrorTamanoArchivo();
+          return;
+        }
       }
     }
 
+    // Si todo está bien, enviar el mensaje
     await this.enviarMensaje(this.tokenCaptcha);
   };
 
@@ -60,38 +70,25 @@ export class AppointmentComponent {
     });
   }
 
-  obtenerExtensionArchivo() {
-    return (
-      this.archivoSeleccionado?.name.split('.').pop() || ''
-    ).toLowerCase();
+  obtenerExtensionArchivo(archivo: File) {
+    return (archivo.name.split('.').pop() || '').toLowerCase();
   }
 
   esExtensionPermitida(extension: string) {
-    const extensionesPermitidas = [
-      'pdf',
-      'doc',
-      'jpg',
-      'jpeg',
-      'png',
-      'zip',
-      'rar',
-    ];
+    const extensionesPermitidas = ['pdf'];
     return extensionesPermitidas.includes(extension);
   }
 
-  tamanoArchivoExcedeLimite() {
-    if (this.archivoSeleccionado) {
-      const fileSizeInBytes = this.archivoSeleccionado.size;
-      const fileSizeInMB = fileSizeInBytes / 1024 / 1024;
-      return fileSizeInMB > 25;
-    }
-    return false;
+  tamanoArchivoExcedeLimite(archivo: File) {
+    const fileSizeInBytes = archivo.size;
+    const fileSizeInMB = fileSizeInBytes / 1024 / 1024;
+    return fileSizeInMB > 8;
   }
 
   mostrarErrorExtensionArchivo() {
     Swal.fire(
       'Error',
-      'El archivo seleccionado no tiene una extensión permitida. Por favor, elija un archivo con una de las siguientes extensiones: .pdf, .doc, .jpg, .jpeg, .png, .zip, .rar',
+      'Al menos uno de los archivos seleccionados no tiene una extensión permitida. Por favor, elija archivos con extensiones .pdf.',
       'error'
     );
   }
@@ -107,13 +104,21 @@ export class AppointmentComponent {
   mostrarErrorTamanoArchivo() {
     Swal.fire(
       'Advertencia',
-      'El archivo es mayor a 25 MB, comprímelo para ser enviado correctamente',
+      'Los archivos adjuntos superan el tamaño de 8MB. Recuerda que no deben superar esa cantidad.',
       'warning'
     );
   }
 
   mostrarErrorCaptcha() {
     Swal.fire('Error', 'Por favor, resuelve el reCAPTCHA', 'error');
+  }
+
+  mostrarErrorArchivo() {
+    Swal.fire(
+      'Advertencia',
+      'Por favor, adjunte los documentos solicitados en el formulario',
+      'warning'
+    );
   }
 
   async enviarMensaje(token: any) {
@@ -125,12 +130,9 @@ export class AppointmentComponent {
     formData.append('correo', this.form.get('correo')?.value);
     formData.append('telefono', this.form.get('telefono')?.value);
     formData.append('descripcion', this.form.get('descripcion')?.value);
-    if (this.archivoSeleccionado) {
-      formData.append(
-        'archivo',
-        this.archivoSeleccionado,
-        this.archivoSeleccionado.name
-      );
+    
+    for (const archivo of this.archivosSeleccionados) {
+      formData.append('archivos', archivo, archivo.name);
     }
 
     try {
@@ -186,17 +188,25 @@ export class AppointmentComponent {
         ],
       ],
       descripcion: ['', Validators.required],
-      archivo: [null],
+      archivos: [null, Validators.required],
       recaptchaReactive: ['', Validators.required],
     });
   }
 
   onFileSelected(event: any) {
-    this.archivoSeleccionado = event.target.files[0];
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement.files) {
+      this.archivosSeleccionados = Array.from(inputElement.files);
+    } else {
+      this.archivosSeleccionados = [];
+    }
   }
 
   get tipoDocumentoNoValido() {
-    return this.form.get('tipo_documento')?.invalid && this.form.get('tipo_documento')?.touched;
+    return (
+      this.form.get('tipo_documento')?.invalid &&
+      this.form.get('tipo_documento')?.touched
+    );
   }
 
   get numeroNoValido() {
@@ -208,7 +218,9 @@ export class AppointmentComponent {
   }
 
   get apellidoNoValido() {
-    return this.form.get('apellido')?.invalid && this.form.get('apellido')?.touched;
+    return (
+      this.form.get('apellido')?.invalid && this.form.get('apellido')?.touched
+    );
   }
 
   get correoNoValido() {
@@ -216,11 +228,16 @@ export class AppointmentComponent {
   }
 
   get telefonoNoValido() {
-    return this.form.get('telefono')?.invalid && this.form.get('telefono')?.touched;
+    return (
+      this.form.get('telefono')?.invalid && this.form.get('telefono')?.touched
+    );
   }
 
   get descripcionNoValido() {
-    return  this.form.get('descripcion')?.invalid && this.form.get('descripcion')?.touched;
+    return (
+      this.form.get('descripcion')?.invalid &&
+      this.form.get('descripcion')?.touched
+    );
   }
 
   async limpiar() {

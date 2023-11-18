@@ -6,16 +6,10 @@
     <div class="row">
       <div class="col-md-4">
         <h4>Correo Electrónico</h4>
-        <a
-          href="mailto:secretariaipsfunpaz@gmail.com"
-          target="_blank"
-          class="footer-link"
-          style="text-decoration: none"
-        >
+
+        <a [href]="emailLink" target="_blank" rel="noopener noreferrer">
           <i class="bi bi-envelope" style="font-size: 2rem"></i>
-          <a style="margin-left: 8px; text-align: center"
-            >secretariaipsfunpaz@gmail.com</a
-          >
+          {{ emailAddress }}
         </a>
       </div>
 
@@ -141,34 +135,24 @@
     </div>
   </div>
 
-  <!-- CONTAINER LINKS -->
   <div class="container-links">
     <h2 class="text-primary">
       <i class="bi bi-puzzle" style="font-size: 3rem"></i> Enlaces de interés
     </h2>
+  
     <div class="container text-center">
       <div class="p-3">
         <div class="card border-primary">
           <div class="card-body">
-            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-              <div class="col">
-                <a
-                  href="https://www.asmetsalud.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src="../../../assets/media/Convenios/asmetsalud.png"
-                    alt="asmetsalud"
-                    class="card-img-top"
-                  />
-                </a>
-              </div>
-              <div class="col">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+  
+              <!-- Enlace 1: Cosmitet -->
+              <div class="col mb-4">
                 <a
                   href="https://www.cosmitet.net/Cosmitet/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  class="d-block text-center"
                 >
                   <img
                     src="../../../assets/media/Convenios/cosmitet.png"
@@ -177,11 +161,14 @@
                   />
                 </a>
               </div>
-              <div class="col">
+  
+              <!-- Enlace 2: Famisanar -->
+              <div class="col mb-4">
                 <a
                   href="https://www.famisanar.com.co/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  class="d-block text-center"
                 >
                   <img
                     src="../../../assets/media/Convenios/famisanar.png"
@@ -190,11 +177,14 @@
                   />
                 </a>
               </div>
-              <div class="col">
+  
+              <!-- Enlace 3: Nueva EPS -->
+              <div class="col mb-4">
                 <a
                   href="https://www.nuevaeps.com.co/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  class="d-block text-center"
                 >
                   <img
                     src="../../../assets/media/Convenios/nuevaeps.png"
@@ -203,11 +193,14 @@
                   />
                 </a>
               </div>
-              <div class="col">
+  
+              <!-- Enlace 4: SaludTotal -->
+              <div class="col mb-4">
                 <a
                   href="https://saludtotal.com.co/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  class="d-block text-center"
                 >
                   <img
                     src="../../../assets/media/Convenios/saludtotal.png"
@@ -216,10 +209,13 @@
                   />
                 </a>
               </div>
+  
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  
+  
 </main>
