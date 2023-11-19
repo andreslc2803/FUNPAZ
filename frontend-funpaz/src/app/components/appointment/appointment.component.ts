@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { catchError, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import { RecaptchaErrorParameters } from 'ng-recaptcha';
 import Swal from 'sweetalert2';
@@ -135,21 +137,27 @@ export class AppointmentComponent {
       formData.append('archivos', archivo, archivo.name);
     }
 
-    try {
-      const recaptchaResponse: any = await this.reCaptchaService
-        .sendToken(token)
-        .toPromise();
-
-      if (recaptchaResponse && recaptchaResponse.success) {
-        await this._MessageService.sendMessage(formData).toPromise();
+    this.reCaptchaService
+      .sendToken(token)
+      .pipe(
+        switchMap((recaptchaResponse: any) => {
+          if (recaptchaResponse && recaptchaResponse.success) {
+            return this._MessageService.sendMessage(formData);
+          } else {
+            this.mostrarErrorCaptcha();
+            return of(null); // Retorna un observable vacío si hay un error en el reCAPTCHA
+          }
+        }),
+        catchError((error) => {
+          console.error('Error al enviar el mensaje:', error);
+          // Puedes agregar aquí la lógica de manejo de errores
+          return of(null);
+        })
+      )
+      .subscribe(() => {
         this.mostrarMensajeExito();
         this.limpiar();
-      } else {
-        this.mostrarErrorCaptcha();
-      }
-    } catch (error) {
-      console.error('Error al enviar el mensaje:', error);
-    }
+      });
   }
 
   resolved(token: any) {

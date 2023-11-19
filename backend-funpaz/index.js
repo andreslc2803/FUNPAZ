@@ -1,37 +1,53 @@
 const express = require("express");
 const cors = require("cors");
-const request = require("request");
-const bodyParser = require("body-parser");
+const axios = require("axios");
+const multer = require("multer");
 
 const formularioContacto = require("./FomularioContacto");
 const formularioCita = require("./FormularioCita");
 const formularioPqrs = require("./FormularioPqrs");
 
 const app = express();
+app.use(express.json());
 const PORT = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-const multer = require("multer");
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-app.post("/token_validate", (req, res) => {
-  let token = req.body.recaptcha;
-  //Clave secreta del reCaptcha https://www.google.com/recaptcha/admin/site/684742025
-  const secretKey = "6LeJVdAoAAAAABYBB-Qvoej2p0O3UYwtiGqRkWlN";
+app.post("/token_validate", async (req, res) => {
+  try {
+    const token = req.body.recaptcha;
+    const secretKey = "6LeJVdAoAAAAABYBB-Qvoej2p0O3UYwtiGqRkWlN";
 
-  const url = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}&remoteip=${req.connection.remoteAddress}`;
+    if (!token) {
+      throw new Error("El token está vacío o es inválido");
+    }
 
-  if (token === null || token === undefined) {
-    res
-      .status(400)
-      .send({ success: false, message: "El token está vacío o es inválido" });
-    return console.error("Token vacío");
+    const url = "https://www.google.com/recaptcha/api/siteverify";
+
+    const response = await axios.post(url, null, {
+      params: {
+        secret: secretKey,
+        response: token,
+        remoteip: req.connection.remoteAddress,
+      },
+    });
+
+    const data = response.data;
+
+    if (!data.success) {
+      throw new Error("La validación del reCaptcha no tuvo éxito");
+    }
+
+    res.send({ success: true, message: "Recaptcha aprobado" });
+  } catch (error) {
+    console.error("Error:", error.message);
+    res.status(400).send({ success: false, message: error.message });
   }
-  res.send({ success: true, message: "Recaptcha aprobado" });
 });
 
 app.post("/formulario-contacto", upload.array("archivos"), (req, res) => {
