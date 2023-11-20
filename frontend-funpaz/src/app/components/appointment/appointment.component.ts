@@ -64,7 +64,7 @@ export class AppointmentComponent {
 
     // Si todo está bien, enviar el mensaje
     await this.enviarMensaje(this.tokenCaptcha);
-  };
+  }
 
   marcarCamposInvalidos() {
     Object.values(this.form.controls).forEach((control) => {
@@ -132,11 +132,12 @@ export class AppointmentComponent {
     formData.append('correo', this.form.get('correo')?.value);
     formData.append('telefono', this.form.get('telefono')?.value);
     formData.append('descripcion', this.form.get('descripcion')?.value);
-    
+    formData.append('tipo_eps', this.form.get('tipo_eps')?.value);
+
     for (const archivo of this.archivosSeleccionados) {
       formData.append('archivos', archivo, archivo.name);
     }
-
+    
     this.reCaptchaService
       .sendToken(token)
       .pipe(
@@ -150,7 +151,6 @@ export class AppointmentComponent {
         }),
         catchError((error) => {
           console.error('Error al enviar el mensaje:', error);
-          // Puedes agregar aquí la lógica de manejo de errores
           return of(null);
         })
       )
@@ -196,6 +196,7 @@ export class AppointmentComponent {
         ],
       ],
       descripcion: ['', Validators.required],
+      tipo_eps: ['', Validators.required],
       archivos: [null, Validators.required],
       recaptchaReactive: ['', Validators.required],
     });
@@ -245,6 +246,12 @@ export class AppointmentComponent {
     return (
       this.form.get('descripcion')?.invalid &&
       this.form.get('descripcion')?.touched
+    );
+  }
+
+  get tipoEpsNoValido() {
+    return (
+      this.form.get('tipo_eps')?.invalid && this.form.get('tipo_eps')?.touched
     );
   }
 

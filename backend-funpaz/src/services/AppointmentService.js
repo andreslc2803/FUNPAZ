@@ -1,26 +1,18 @@
 const nodemailer = require("nodemailer");
+const { EMAIL, APPLICATION_PASSWORD_GOOGLE } = require("../config/config");
 
-/**
- * Configura y envía un correo electrónico con los datos del formulario.
- * @param {object} formulario - Objeto que contiene los datos del formulario.
- * @param {object} archivosAdjuntos - Opcional. Objeto que representa el archivo adjunto.
- */
-module.exports = (formulario, archivosAdjuntos) => {
-  // Configura el transporte de correo utilizando el servicio de Gmail.
-  var transporter = nodemailer.createTransport({
+exports.processForm = (formulario, archivosAdjuntos) => {
+  const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "andrescarvajal2803londono@gmail.com", // Cambialo por tu email
-      pass: "ehlu jjnp fndg qnyr", // Cambialo por tu contraseña o token de aplicación (se pide desde google)
+      user: EMAIL,
+      pass: APPLICATION_PASSWORD_GOOGLE,
     },
   });
 
-  /**
-   * Estructura del cuerpo del mensaje que va a llegar al correo electrónico.
-   */
   const mailOptions = {
     from: `'${formulario.nombre}' <${formulario.correo}>`,
-    to: "andrescarvajal2803londono@gmail.com", // Cambia esta parte por el destinatario
+    to: EMAIL, // Cambia esta parte por el destinatario
     subject: "MENSAJE FORMULARIO CITA", //Traer la eps seleccionada********
     html: `
       <h1>CITA</h1>
@@ -31,11 +23,11 @@ module.exports = (formulario, archivosAdjuntos) => {
       <strong>E-mail: </strong> ${formulario.correo} <br/>
       <strong>Teléfono: </strong><a href="https://wa.me/57${formulario.telefono}" target="_blank">
       ${formulario.telefono}</a><br/>
+      <strong>EPS: </strong> ${formulario.tipo_eps} <br/>
       <strong>Descripción de la cita: </strong> ${formulario.descripcion}
     `,
   };
 
-  // Verifica si hay archivos adjuntos y los agrega a las opciones del correo.
   if (archivosAdjuntos && archivosAdjuntos.length > 0) {
     mailOptions.attachments = archivosAdjuntos.map((adjunto) => ({
       filename: adjunto.originalname,
@@ -43,7 +35,6 @@ module.exports = (formulario, archivosAdjuntos) => {
     }));
   }
 
-  // Envía el correo electrónico utilizando el transporte configurado.
   transporter.sendMail(mailOptions, function (err, info) {
     if (err) {
       console.error("ERROR : " + err);

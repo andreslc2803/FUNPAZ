@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class MessageAppointmentService {
-  private apiUrl = 'http://localhost:3000/formulario-cita';
+  private apiUrl = 'http://localhost:3000/api/formulario-cita';
   constructor(private _http: HttpClient) {}
 
   sendMessage(formData: FormData): Observable<any> {

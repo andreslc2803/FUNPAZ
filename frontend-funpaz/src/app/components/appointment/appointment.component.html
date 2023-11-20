@@ -149,6 +149,26 @@
                   </div>
                 </div>
 
+                <div class="col-12 col-md-6">
+                  <div class="mb-2 small">
+                    <label for="tipo_eps" class="form-label">EPS</label>
+                    <select
+                      name="tipo_eps"
+                      id="tipo_eps"
+                      formControlName="tipo_eps"
+                      class="form-select"
+                    >
+                      <option value="COSMITET">Cosmitet</option>
+                      <option value="FAMISANAR">Famisanar</option>
+                      <option value="NUEVA_EPS">Nueva Eps</option>
+                      <option value="SALUD_TOTAL">Salud Total</option>
+                    </select>
+                    <small *ngIf="tipoEpsNoValido" class="text-danger"
+                      >Ingrese la EPS</small
+                    >
+                  </div>
+                </div>
+
                 <div class="mb-2 small">
                   <label for="descripcion" class="form-label"
                     >Descripción de la cita</label
@@ -180,8 +200,8 @@
                 <p class="small">
                   <em>
                     Por favor adjunte ORDEN MÉDICA, AUTORIZACIÓN DE EPS Y
-                    DOCUMENTOS DE IDENTIDAD POR AMBOS LADOS en archivos .pdf. El tamaño máximo
-                    permitido del archivo adjunto es de 8MB.
+                    DOCUMENTOS DE IDENTIDAD POR AMBOS LADOS en archivos .pdf. El
+                    tamaño máximo permitido del archivo adjunto es de 8MB.
                   </em>
                 </p>
 

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class MessagePqrsService {
-  private apiUrl = 'http://localhost:3000/formulario-pqrs';
+  private apiUrl = 'http://localhost:3000/api/formulario-pqrsf';
   constructor(private _http: HttpClient) {}
 
   sendMessage(formData: FormData): Observable<any> {

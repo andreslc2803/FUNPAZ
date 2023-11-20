@@ -34,7 +34,7 @@ import { MessagePqrsService } from './services/message-pqrs.service';
     CarouselComponent,
     AppointmentComponent,
     ServicesComponent,
-    PqrsComponent // Componente debe estar en "declarations"
+    PqrsComponent 
   ],
   imports: [
     BrowserModule,

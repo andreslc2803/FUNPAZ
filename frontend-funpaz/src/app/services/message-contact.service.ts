@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class MessageContactService {
-  private apiUrl = 'http://localhost:3000/formulario-contacto';
+  private apiUrl = 'http://localhost:3000/api/formulario-contacto';
   constructor(private _http: HttpClient) {}
 
   sendMessage(formData: FormData): Observable<any> {
