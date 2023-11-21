@@ -17,11 +17,13 @@ const { SERVER_PORT } = require("./src/config/config");
 const contactoRoutes = require("./src/routes/ContactRoutes");
 const citaRoutes = require("./src/routes/AppointmentRoutes");
 const pqrsfRoutes = require("./src/routes/PqrsfRoutes");
+const historiaRoutes = require("./src/routes/HistoryRoutes");
 
 // Usar las rutas
 app.use("/api", contactoRoutes);
 app.use("/api", citaRoutes);
 app.use("/api", pqrsfRoutes);
+app.use("/api", historiaRoutes);
 
 // Configuración del servidor para escuchar en el puerto especificado
 app.listen(SERVER_PORT, () => {

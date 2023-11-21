@@ -1,0 +1,14 @@
+.container-form {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .form-buttons {
+    margin-top: 10px;
+  }
+  
+  .form-buttons button {
+    margin: 0 10px;
+  }

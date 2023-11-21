@@ -6,6 +6,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { ServicesComponent } from './components/services/services.component';
 import { PqrsComponent } from './components/pqrs/pqrs.component';
+import { ClinicHistoryComponent } from './components/clinic-history/clinic-history.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'appointment', component: AppointmentComponent },
   { path: 'services', component: ServicesComponent },
   { path: 'pqrs', component: PqrsComponent },
+  { path: 'clinic_history', component: ClinicHistoryComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

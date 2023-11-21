@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// image-slider
 import { NgImageSliderModule } from 'ng-image-slider';
 //recaptcha
 import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
@@ -17,6 +18,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { PqrsComponent } from './components/pqrs/pqrs.component';
 import { ServicesComponent } from './components/services/services.component';
+import { ClinicHistoryComponent } from './components/clinic-history/clinic-history.component';
 //servicios
 import { MessageContactService } from 'src/app/services/message-contact.service';
 import { MessageAppointmentService } from 'src/app/services/message-appointment.service';
@@ -34,6 +36,7 @@ import { MessagePqrsService } from './services/message-pqrs.service';
     AppointmentComponent,
     ServicesComponent,
     PqrsComponent,
+    ClinicHistoryComponent,
   ],
   imports: [
     BrowserModule,

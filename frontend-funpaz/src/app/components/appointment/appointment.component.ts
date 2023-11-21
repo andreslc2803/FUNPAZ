@@ -242,5 +242,6 @@ export class AppointmentComponent {
 
   async limpiar() {
     await this.form.reset();
+    this.archivosSeleccionados = [];
   }
 }

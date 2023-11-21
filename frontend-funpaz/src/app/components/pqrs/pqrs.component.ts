@@ -7,7 +7,6 @@ import Swal from 'sweetalert2';
 import { AppConfig } from 'src/config/config';
 import { MessagePqrsService } from 'src/app/services/message-pqrs.service';
 
-
 @Component({
   selector: 'app-pqrs',
   templateUrl: './pqrs.component.html',
@@ -111,9 +110,7 @@ export class PqrsComponent {
       formData.append('archivos', archivo, archivo.name);
     }
 
-    this._MessageService
-    .sendMessage(formData, token)
-    .subscribe(
+    this._MessageService.sendMessage(formData, token).subscribe(
       () => {
         this.mostrarMensajeExito();
         this.limpiar();

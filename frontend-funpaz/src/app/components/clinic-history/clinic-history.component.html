@@ -1,0 +1,119 @@
+<div
+  class="container-history-clinic"
+  style="
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    justify-content: center;
+  "
+>
+  <div class="container-form">
+    <div class="row justify-content-center">
+      <div class="card border-primary">
+        <div class="card-body">
+          <div class="row" style="margin-left: 10%; margin-right: 10%">
+            <h4 class="featurette-heading text-primary fs-6">
+              FUNPAZ I.P.S - Clínica de Salud Mental
+            </h4>
+            <h4
+              class="text-primary fs-2"
+              style="text-align: center; margin-top: auto; margin-bottom: 4%"
+            >
+              Historia Clínica
+            </h4>
+            <form
+              [formGroup]="form"
+              (ngSubmit)="enviar()"
+              enctype="multipart/form-data"
+              style="width: 100%; max-width: auto"
+            >
+              <p class="lead">
+                Para solicitar la historia clínica en la Clínica FUNPAZ, se debe
+                seguir un procedimiento específico para garantizar la
+                confidencialidad y seguridad de la información médica. El
+                proceso comienza descargando el formulario de solicitud desde la
+                página web de la clínica, el cual incluye campos esenciales para
+                la identificación del paciente o del solicitante, en caso de ser
+                diferente. Una vez descargado, el formulario se completa con
+                información detallada sobre el paciente y los detalles
+                específicos de la información requerida.
+                <br /><br />Posteriormente, el formulario completado puede ser
+                enviado de dos maneras: entregándolo físicamente en la recepción
+                de la clínica o enviándolo electrónicamente a través de la
+                página web de la institución. Después de recibir la solicitud,
+                la Clínica FUNPAZ realiza una revisión para garantizar la
+                exactitud de la información y verificar la legitimidad del
+                solicitante. <br /><br />
+                Una vez completada la verificación, se procede a recopilar la
+                historia clínica solicitada y prepararla para su entrega. Es
+                importante destacar que la Clínica FUNPAZ se compromete a
+                responder a la solicitud en un lapso de ocho (8) días hábiles,
+                con el objetivo de asegurar una atención oportuna y eficaz. Los
+                solicitantes deben planificar en consecuencia, considerando este
+                periodo para recibir la información de manera puntual. Este
+                proceso, que involucra la descarga, completado y envío del
+                formulario, refuerza la transparencia y el respeto por los
+                derechos del paciente en el acceso a su información médica.
+              </p>
+              <p class="lead">
+                <em>Descarga el formato: </em>
+                <a
+                  href="../../../assets/media/HistoriaClinica/Formato Solicitud HC.pdf"
+                  download
+                  target="_blank"
+                >
+                  Formato Historia Clínica
+                </a>
+              </p>
+              <div class="mb-2 small d-flex justify-content-left">
+                <input
+                  type="file"
+                  id="archivos"
+                  name="archivos"
+                  formControlName="archivos"
+                  (change)="onFileSelected($event)"
+                  class="form-control"
+                  multiple
+                  accept=".pdf"
+                />
+              </div>
+              <p class="small">
+                <em>
+                  Por favor adjunte el formato donde se diligencio la HISTORIA
+                  CLÍNICA en formato .pdf. El tamaño máximo permitido del
+                  archivo adjunto es de 8MB.
+                </em>
+              </p>
+              <div class="mb-2 d-flex justify-content-center">
+                <re-captcha
+                  (resolved)="resolved($event)"
+                  (errored)="onError($event)"
+                  errorMode="handled"
+                  formControlName="recaptchaReactive"
+                  [siteKey]="siteKey"
+                  class="align-self-center"
+                  style="transform: scale(0.85)"
+                >
+                </re-captcha>
+              </div>
+
+              <!-- Botones -->
+              <div class="form-buttons text-center">
+                <button type="submit" class="btn btn-outline-success">
+                  Enviar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-danger"
+                  (click)="limpiar()"
+                >
+                  Limpiar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
