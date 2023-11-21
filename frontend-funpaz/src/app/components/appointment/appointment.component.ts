@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { catchError, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
 
 import { RecaptchaErrorParameters } from 'ng-recaptcha';
 import Swal from 'sweetalert2';
 
 import { AppConfig } from 'src/config/config';
 import { MessageAppointmentService } from 'src/app/services/message-appointment.service';
-import { RecaptchaService } from 'src/app/services/recaptcha.service';
 
 @Component({
   selector: 'app-appointment',
@@ -23,7 +20,6 @@ export class AppointmentComponent {
 
   constructor(
     public _MessageService: MessageAppointmentService,
-    public reCaptchaService: RecaptchaService,
     private fb: FormBuilder
   ) {
     this.crearFormulario();
@@ -137,27 +133,16 @@ export class AppointmentComponent {
     for (const archivo of this.archivosSeleccionados) {
       formData.append('archivos', archivo, archivo.name);
     }
-    
-    this.reCaptchaService
-      .sendToken(token)
-      .pipe(
-        switchMap((recaptchaResponse: any) => {
-          if (recaptchaResponse && recaptchaResponse.success) {
-            return this._MessageService.sendMessage(formData);
-          } else {
-            this.mostrarErrorCaptcha();
-            return of(null); // Retorna un observable vacío si hay un error en el reCAPTCHA
-          }
-        }),
-        catchError((error) => {
-          console.error('Error al enviar el mensaje:', error);
-          return of(null);
-        })
-      )
-      .subscribe(() => {
+
+    this._MessageService.sendMessage(formData, token).subscribe(
+      () => {
         this.mostrarMensajeExito();
         this.limpiar();
-      });
+      },
+      (error) => {
+        console.error('Error al enviar el mensaje:', error);
+      }
+    );
   }
 
   resolved(token: any) {

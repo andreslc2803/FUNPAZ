@@ -3,20 +3,27 @@ const { SECRET_KEY } = require("../config/config");
 
 const recaptchaMiddleware = async (req, res, next) => {
   try {
-    const token = req.body.recaptcha;
-
+    const token = req.header("Authorization");
     if (!token) {
       throw new Error("El token está vacío o es inválido");
     }
 
+    // Extraer el token de formato "Bearer {token}"
+    const tokenParts = token.split(" ");
+    const recaptchaToken = tokenParts[1];
+
     const url = "https://www.google.com/recaptcha/api/siteverify";
-    const response = await axios.post(url, null, {
-      params: {
-        secret: SECRET_KEY,
-        response: token,
-        remoteip: req.connection.remoteAddress,
-      },
-    });
+    const response = await axios.post(
+      url,
+      null,
+      {
+        params: {
+          secret: SECRET_KEY,
+          response: recaptchaToken,
+          remoteip: req.connection.remoteAddress,
+        },
+      }
+    );
 
     const data = response.data;
 

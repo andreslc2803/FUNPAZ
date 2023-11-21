@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { catchError, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
 
 import { RecaptchaErrorParameters } from 'ng-recaptcha';
 import Swal from 'sweetalert2';
 
 import { AppConfig } from 'src/config/config';
 import { MessagePqrsService } from 'src/app/services/message-pqrs.service';
-import { RecaptchaService } from 'src/app/services/recaptcha.service';
+
 
 @Component({
   selector: 'app-pqrs',
@@ -23,7 +21,6 @@ export class PqrsComponent {
 
   constructor(
     public _MessageService: MessagePqrsService,
-    public reCaptchaService: RecaptchaService,
     private fb: FormBuilder
   ) {
     this.crearFormulario();
@@ -114,27 +111,17 @@ export class PqrsComponent {
       formData.append('archivos', archivo, archivo.name);
     }
 
-    this.reCaptchaService
-      .sendToken(token)
-      .pipe(
-        switchMap((recaptchaResponse: any) => {
-          if (recaptchaResponse && recaptchaResponse.success) {
-            return this._MessageService.sendMessage(formData);
-          } else {
-            this.mostrarErrorCaptcha();
-            return of(null); // Retorna un observable vacío si hay un error en el reCAPTCHA
-          }
-        }),
-        catchError((error) => {
-          console.error('Error al enviar el mensaje:', error);
-          // Puedes agregar aquí la lógica de manejo de errores
-          return of(null);
-        })
-      )
-      .subscribe(() => {
+    this._MessageService
+    .sendMessage(formData, token)
+    .subscribe(
+      () => {
         this.mostrarMensajeExito();
         this.limpiar();
-      });
+      },
+      (error) => {
+        console.error('Error al enviar el mensaje:', error);
+      }
+    );
   }
 
   mostrarMensajeExito() {
