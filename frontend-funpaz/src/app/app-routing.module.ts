@@ -7,6 +7,7 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
 import { ServicesComponent } from './components/services/services.component';
 import { PqrsComponent } from './components/pqrs/pqrs.component';
 import { ClinicHistoryComponent } from './components/clinic-history/clinic-history.component';
+import { DonationComponent } from './components/donation/donation.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'services', component: ServicesComponent },
   { path: 'pqrs', component: PqrsComponent },
   { path: 'clinic_history', component: ClinicHistoryComponent },
+  { path: 'donations', component: DonationComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

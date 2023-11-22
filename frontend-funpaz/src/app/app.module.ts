@@ -23,6 +23,7 @@ import { ClinicHistoryComponent } from './components/clinic-history/clinic-histo
 import { MessageContactService } from 'src/app/services/message-contact.service';
 import { MessageAppointmentService } from 'src/app/services/message-appointment.service';
 import { MessagePqrsService } from './services/message-pqrs.service';
+import { DonationComponent } from './components/donation/donation.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { MessagePqrsService } from './services/message-pqrs.service';
     ServicesComponent,
     PqrsComponent,
     ClinicHistoryComponent,
+    DonationComponent,
   ],
   imports: [
     BrowserModule,
