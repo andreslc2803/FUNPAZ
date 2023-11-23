@@ -1,4 +1,4 @@
-// Importación de los módulos necesarios
+// Importación de los módulos necesarios para utilizar express
 const express = require("express");
 const cors = require("cors");
 
