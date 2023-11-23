@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./about-us.component.css'],
 })
 export class AboutUsComponent {
+  /**
+   * Array de objetos que contienen la informacion de las imagenes
+   */
   imgCollection: Array<object> = [
     {
       image: './assets/media/FotosFunpaz/1.jpeg',

@@ -13,11 +13,16 @@ import { MessageAppointmentService } from 'src/app/services/message-appointment.
   styleUrls: ['./appointment.component.css'],
 })
 export class AppointmentComponent {
+  // Clave del sitio ReCaptcha obtenida de las configuraciones
   protected siteKey = AppConfig.reCaptchaSiteKey;
+  // Definicion de el formulario
   form!: FormGroup;
+  // Arreglo donde se almacenan los archivos seleccionados
   archivosSeleccionados: File[] = [];
+  // Token para validar la realizacion del reCaptcha
   tokenCaptcha: string | null = null;
 
+  // Constructor del componente
   constructor(
     public _MessageService: MessageAppointmentService,
     private fb: FormBuilder
@@ -25,7 +30,12 @@ export class AppointmentComponent {
     this.crearFormulario();
   }
 
+  /**
+   * Verifica que se hayan realizado todo los filtros para el envio del formulario, si es asi
+   * realiza el envio
+   */
   async enviar() {
+    // Verificar la validez del captcha
     if (!this.isCaptchaValid()) {
       this.mostrarErrorCaptcha();
       return;
@@ -38,11 +48,13 @@ export class AppointmentComponent {
       return;
     }
 
+    // Validar el formulario antes de enviar
     if (this.form.invalid) {
       this.marcarCamposInvalidos();
       return;
     }
 
+    // Validar extensiones y tamaño de archivos si se han seleccionado
     if (this.archivosSeleccionados.length > 0) {
       for (const archivo of this.archivosSeleccionados) {
         const fileExtension = this.obtenerExtensionArchivo(archivo);
@@ -62,27 +74,42 @@ export class AppointmentComponent {
     await this.enviarMensaje(this.tokenCaptcha);
   }
 
+  /**
+   * Marcar todos los campos del formulario como tocados
+   */
   marcarCamposInvalidos() {
     Object.values(this.form.controls).forEach((control) => {
       control.markAllAsTouched();
     });
   }
 
+  /**
+   * Obtiene la extension de un archivo
+   */
   obtenerExtensionArchivo(archivo: File) {
     return (archivo.name.split('.').pop() || '').toLowerCase();
   }
 
+  /**
+   * Verifica si la extension de un archivo es permitida
+   */
   esExtensionPermitida(extension: string) {
     const extensionesPermitidas = ['pdf'];
     return extensionesPermitidas.includes(extension);
   }
 
+  /**
+   * Verifica si el tamaño de un archivo excede el limite
+   */
   tamanoArchivoExcedeLimite(archivo: File) {
     const fileSizeInBytes = archivo.size;
     const fileSizeInMB = fileSizeInBytes / 1024 / 1024;
     return fileSizeInMB > 8;
   }
 
+  /**
+   * Muestra un mensaje de error por extensión de archivo no permitida
+   */
   mostrarErrorExtensionArchivo() {
     Swal.fire(
       'Error',
@@ -91,6 +118,9 @@ export class AppointmentComponent {
     );
   }
 
+  /**
+   * Muestra un mensaje de exito cuando el formulario se completo correctamente
+   */
   mostrarMensajeExito() {
     Swal.fire(
       'Formulario de contacto',
@@ -99,6 +129,9 @@ export class AppointmentComponent {
     );
   }
 
+  /**
+   * Muestra una advertencia debido a que el tamaño de los archivos exceden el tamaño de 8MB
+   */
   mostrarErrorTamanoArchivo() {
     Swal.fire(
       'Advertencia',
@@ -107,10 +140,16 @@ export class AppointmentComponent {
     );
   }
 
+  /**
+   * Muestra un mensaje de error al no haber resuelto el reCaptcha para enviar el formulario
+   */
   mostrarErrorCaptcha() {
     Swal.fire('Error', 'Por favor, resuelve el reCAPTCHA', 'error');
   }
 
+  /**
+   * Muestra una advertencia al no adjuntar un archivo en el formulario
+   */
   mostrarErrorArchivo() {
     Swal.fire(
       'Advertencia',
@@ -119,6 +158,9 @@ export class AppointmentComponent {
     );
   }
 
+  /**
+   * Envia el formulario como mensaje al servicio correspondiente
+   */
   async enviarMensaje(token: any) {
     const formData = new FormData();
     formData.append('tipo_documento', this.form.get('tipo_documento')?.value);
@@ -145,18 +187,30 @@ export class AppointmentComponent {
     );
   }
 
+  /**
+   * Callback para el evento de resolución de captcha
+   */
   resolved(token: any) {
     this.tokenCaptcha = token;
   }
 
+  /**
+   * Callback para el evento de error de captcha
+   */
   onError(errorDetails: RecaptchaErrorParameters): void {
     console.log(`reCAPTCHA error encountered`);
   }
 
+  /**
+   * Verificar si el captcha es valido
+   */
   isCaptchaValid() {
     return this.tokenCaptcha !== null;
   }
 
+  /**
+   * Crea el formulario con validaciones
+   */
   crearFormulario() {
     this.form = this.fb.group({
       tipo_documento: ['', Validators.required],
@@ -187,6 +241,9 @@ export class AppointmentComponent {
     });
   }
 
+  /**
+   * Callback para el evento de selección de archivos
+   */
   onFileSelected(event: any) {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files) {
@@ -196,6 +253,9 @@ export class AppointmentComponent {
     }
   }
 
+  /**
+   * Propiedades computadas para verificar validez de campos individuales
+   */
   get tipoDocumentoNoValido() {
     return (
       this.form.get('tipo_documento')?.invalid &&
@@ -240,6 +300,9 @@ export class AppointmentComponent {
     );
   }
 
+  /**
+   * Limpia el formulario y archivos seleccionados
+   */
   async limpiar() {
     await this.form.reset();
     this.archivosSeleccionados = [];

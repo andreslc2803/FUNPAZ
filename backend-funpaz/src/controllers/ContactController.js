@@ -1,5 +1,23 @@
+/**
+ * Maneja la solicitud de formularios de contacto.
+ *
+ * @module controllers/contactController
+ */
+
+/**
+ * Importa el servicio de contacto para procesar la información del formulario.
+ *
+ * @constant {Object} contactoService
+ */
 const contactoService = require("../services/ContactService");
 
+/**
+ * Maneja la solicitud de formularios de contacto, procesa la información del formulario y archivos adjuntos.
+ *
+ * @param {Object} req - Objeto de solicitud HTTP.
+ * @param {Object} res - Objeto de respuesta HTTP.
+ * @returns {void}
+ */
 exports.handleForm = (req, res) => {
   try {
     // Obtener datos del formulario y archivos adjuntos
@@ -17,7 +35,11 @@ exports.handleForm = (req, res) => {
         .status(400)
         .json({ error: "Por favor, complete todos los campos obligatorios." });
     }
+
+    // Procesar el formulario utilizando el servicio de contacto
     contactoService.processForm(formulario, archivosAdjuntos);
+
+    // Responder con éxito
     res.status(200).send();
     
   } catch (error) {
