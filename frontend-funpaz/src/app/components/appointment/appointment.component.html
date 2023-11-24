@@ -1,8 +1,8 @@
 <div
   class="container-appointment"
-  style="text-align: center; margin-top: 10%; margin-bottom: 5%"
+  style=" margin-top: 10%; margin-bottom: 5%"
 >
-  <div class="row">
+  <div class="row" style="text-align: center;">
     <h4 class="featurette-heading text-primary fs-6">
       FUNPAZ I.P.S - Clínica de Salud Mental
     </h4>
@@ -25,7 +25,7 @@
   <div class="row">
     <div class="col-md-7">
       <div class="container-form">
-        <div class="row justify-content-center">
+        <div class="row">
           <div class="card border-primary">
             <div class="card-body">
               <h2 style="text-align: center">
@@ -134,7 +134,7 @@
                   </div>
                   <div class="col-12 col-md-6">
                     <div class="mb-2 small">
-                      <label for="telefono" class="form-label">Telefono</label>
+                      <label for="telefono" class="form-label">Teléfono</label>
                       <input
                         type="number"
                         class="form-control"
@@ -142,8 +142,7 @@
                         formControlName="telefono"
                       />
                       <small *ngIf="telefonoNoValido" class="text-danger"
-                        >Ingrese un teléfono (solo números y máximo 10
-                        caracteres)</small
+                        >Ingrese un teléfono (máximo 20 dígitos)</small
                       >
                     </div>
                   </div>

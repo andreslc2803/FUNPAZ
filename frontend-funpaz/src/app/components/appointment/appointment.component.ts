@@ -177,7 +177,11 @@ export class AppointmentComponent {
    * Muestra un mensaje de error si los términos no han sido aceptados
    */
   mostrarErrorTerminos() {
-    Swal.fire('Error', 'Debes aceptar la Política de Tratamiento y Protección de la Información', 'error');
+    Swal.fire(
+      'Error',
+      'Debes aceptar la Política de Tratamiento y Protección de la Información',
+      'error'
+    );
   }
 
   /**
@@ -250,11 +254,7 @@ export class AppointmentComponent {
       ],
       telefono: [
         '',
-        [
-          Validators.required,
-          Validators.pattern('^[0-9]{10}$'),
-          Validators.maxLength(10),
-        ],
+        [Validators.required, Validators.pattern('^[0-9]{1,20}$')],
       ],
       descripcion: ['', Validators.required],
       tipo_eps: ['', Validators.required],

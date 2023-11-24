@@ -231,10 +231,7 @@ export class PqrsComponent {
           ),
         ],
       ],
-      telefono: [
-        '',
-        [Validators.pattern('^[0-9]{10}$'), Validators.maxLength(10)],
-      ],
+      telefono: ['', Validators.pattern('^[0-9]{1,20}$')],
       descripcion: ['', Validators.required],
       archivos: [null],
       recaptchaReactive: ['', Validators.required],

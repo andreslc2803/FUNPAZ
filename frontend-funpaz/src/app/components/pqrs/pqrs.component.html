@@ -1,6 +1,6 @@
 <div
   class="container-appointment"
-  style="text-align: center; margin-top: 10%; margin-bottom: 5%"
+  style="text-align: center; margin-top: 10%; margin-bottom: 5%; "
 >
   <div class="row">
     <h4 class="featurette-heading text-primary fs-6">
@@ -164,6 +164,7 @@
                     id="tipo_documento"
                     formControlName="tipo_documento"
                     class="form-select"
+                    style="max-width: 100%;"
                   >
                     <option value="C.C">Cédula de Ciudadanía (CC)</option>
                     <option value="T.I">Tarjeta de Identidad (TI)</option>
@@ -257,8 +258,7 @@
                     formControlName="telefono"
                   />
                   <small *ngIf="telefonoNoValido" class="text-danger"
-                    >Ingrese un teléfono (solo números y máximo 10
-                    caracteres)</small
+                    >Ingrese un teléfono (máximo 20 dígitos)</small
                   >
                 </div>
               </div>
