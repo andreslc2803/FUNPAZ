@@ -21,6 +21,8 @@ export class AppointmentComponent {
   archivosSeleccionados: File[] = [];
   // Token para validar la realizacion del reCaptcha
   tokenCaptcha: string | null = null;
+  // Aceptar terminos y condiciones para enviar el formulario
+  aceptoTerminos: boolean = false;
 
   // Constructor del componente
   constructor(
@@ -35,6 +37,12 @@ export class AppointmentComponent {
    * realiza el envio
    */
   async enviar() {
+    // Verificar que se haya aceptado los términos
+    if (!this.aceptoTerminos) {
+      this.mostrarErrorTerminos();
+      return;
+    }
+
     // Verificar la validez del captcha
     if (!this.isCaptchaValid()) {
       this.mostrarErrorCaptcha();
@@ -72,6 +80,13 @@ export class AppointmentComponent {
 
     // Si todo está bien, enviar el mensaje
     await this.enviarMensaje(this.tokenCaptcha);
+  }
+
+  /**
+   * Valida que se hayan aceptado los terminos y condiciones para enviar el formulario
+   */
+  onAceptoTerminosChange(event: any) {
+    this.aceptoTerminos = event.target.checked;
   }
 
   /**
@@ -159,6 +174,13 @@ export class AppointmentComponent {
   }
 
   /**
+   * Muestra un mensaje de error si los términos no han sido aceptados
+   */
+  mostrarErrorTerminos() {
+    Swal.fire('Error', 'Debes aceptar la Política de Tratamiento y Protección de la Información', 'error');
+  }
+
+  /**
    * Envia el formulario como mensaje al servicio correspondiente
    */
   async enviarMensaje(token: any) {
@@ -238,6 +260,7 @@ export class AppointmentComponent {
       tipo_eps: ['', Validators.required],
       archivos: [null, Validators.required],
       recaptchaReactive: ['', Validators.required],
+      aceptoTerminos: [false, Validators.required],
     });
   }
 

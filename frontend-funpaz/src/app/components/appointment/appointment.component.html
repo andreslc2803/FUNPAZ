@@ -219,6 +219,33 @@
                   </re-captcha>
                 </div>
 
+                <!-- checkbox -->
+                <div
+                  class="form-check form-switch form-check-inline"
+                  style="margin-bottom: 5%"
+                >
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="aceptoTerminos"
+                    name="aceptoTerminos"
+                    formControlName="aceptoTerminos"
+                    (change)="onAceptoTerminosChange($event)"
+                  />
+
+                  <label class="form-check-label" for="aceptoTerminos">
+                    Acepto la
+                    <a
+                      class="habeas"
+                      href="../../../assets/media/PoliticaPrivacidad/Politica de seguridad de la informacion FUNPAZ IPS.pdf"
+                      target="_blank"
+                    >
+                      Política de Tratamiento y Protección de la Información
+                    </a>
+                  </label>
+                </div>
+
                 <!-- Botones -->
                 <div class="form-buttons text-center">
                   <button type="submit" class="btn btn-outline-success">

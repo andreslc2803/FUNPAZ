@@ -21,6 +21,8 @@ export class ClinicHistoryComponent {
   archivosSeleccionados: File[] = [];
   // Token para validar la realizacion del reCaptcha
   tokenCaptcha: string | null = null;
+  // Aceptar terminos y condiciones para enviar el formulario
+  aceptoTerminos: boolean = false;
 
   // Constructor del componente
   constructor(
@@ -35,6 +37,12 @@ export class ClinicHistoryComponent {
    * realiza el envio
    */
   async enviar() {
+    // Verificar que se haya aceptado los términos
+    if (!this.aceptoTerminos) {
+      this.mostrarErrorTerminos();
+      return;
+    }
+
     // Verificar la validez del captcha
     if (!this.isCaptchaValid()) {
       this.mostrarErrorCaptcha();
@@ -67,6 +75,13 @@ export class ClinicHistoryComponent {
   }
 
   /**
+   * Valida que se hayan aceptado los terminos y condiciones para enviar el formulario
+   */
+  onAceptoTerminosChange(event: any) {
+    this.aceptoTerminos = event.target.checked;
+  }
+
+  /**
    * Envia el formulario como mensaje al servicio correspondiente
    */
   async enviarMensaje(token: any) {
@@ -94,6 +109,7 @@ export class ClinicHistoryComponent {
     this.form = this.fb.group({
       archivos: [null, Validators.required],
       recaptchaReactive: ['', Validators.required],
+      aceptoTerminos: [false, Validators.required],
     });
   }
 
@@ -203,6 +219,13 @@ export class ClinicHistoryComponent {
       'Mensaje enviado correctamente',
       'success'
     );
+  }
+
+  /**
+   * Muestra un mensaje de error si los términos no han sido aceptados
+   */
+  mostrarErrorTerminos() {
+    Swal.fire('Error', 'Debes aceptar la Política de Tratamiento y Protección de la Información', 'error');
   }
 
   /**

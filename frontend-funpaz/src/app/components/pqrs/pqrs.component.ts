@@ -21,6 +21,8 @@ export class PqrsComponent {
   archivosSeleccionados: File[] = [];
   // Token para validar la realizacion del reCaptcha
   tokenCaptcha: string | null = null;
+  // Aceptar terminos y condiciones para enviar el formulario
+  aceptoTerminos: boolean = false;
 
   // Constructor del componente
   constructor(
@@ -35,6 +37,11 @@ export class PqrsComponent {
    * realiza el envio
    */
   async enviar() {
+    // Verificar que se haya aceptado los términos
+    if (!this.aceptoTerminos) {
+      this.mostrarErrorTerminos();
+      return;
+    }
     // Verificar la validez del captcha
     if (!this.isCaptchaValid()) {
       this.mostrarErrorCaptcha();
@@ -66,6 +73,12 @@ export class PqrsComponent {
     await this.enviarMensaje(this.tokenCaptcha);
   }
 
+  /**
+   * Valida que se hayan aceptado los terminos y condiciones para enviar el formulario
+   */
+  onAceptoTerminosChange(event: any) {
+    this.aceptoTerminos = event.target.checked;
+  }
   /**
    * Marcar todos los campos del formulario como tocados
    */
@@ -136,6 +149,17 @@ export class PqrsComponent {
       'Formulario de contacto',
       'Mensaje enviado correctamente',
       'success'
+    );
+  }
+
+  /**
+   * Muestra un mensaje de error si los términos no han sido aceptados
+   */
+  mostrarErrorTerminos() {
+    Swal.fire(
+      'Error',
+      'Debes aceptar la Política de Tratamiento y Protección de la Información',
+      'error'
     );
   }
 
@@ -214,6 +238,7 @@ export class PqrsComponent {
       descripcion: ['', Validators.required],
       archivos: [null],
       recaptchaReactive: ['', Validators.required],
+      aceptoTerminos: [false, Validators.required],
     });
   }
 

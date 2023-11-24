@@ -84,7 +84,7 @@
                 [formGroup]="form"
                 (ngSubmit)="enviar()"
                 enctype="multipart/form-data"
-                style="width: 100%; max-width: 100%;"
+                style="width: 100%; max-width: 100%"
               >
                 <div class="row">
                   <div class="col-12 col-md-4">
@@ -181,6 +181,30 @@
                     style="transform: scale(0.85)"
                   >
                   </re-captcha>
+                </div>
+
+                <!-- checkbox -->
+                <div class="form-check form-switch form-check-inline" style="margin-bottom: 5%">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="aceptoTerminos"
+                    name="aceptoTerminos"
+                    formControlName="aceptoTerminos"
+                    (change)="onAceptoTerminosChange($event)"
+                  />
+
+                  <label class="form-check-label" for="aceptoTerminos">
+                    Acepto la
+                    <a
+                      class="habeas"
+                      href="../../../assets/media/PoliticaPrivacidad/Politica de seguridad de la informacion FUNPAZ IPS.pdf"
+                      target="_blank"
+                    >
+                      Política de Tratamiento y Protección de la Información
+                    </a>
+                  </label>
                 </div>
 
                 <!-- Botones -->
