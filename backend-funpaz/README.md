@@ -2,6 +2,12 @@
 
 ¡Bienvenido al backend de Funpaz! Este componente está construido con Node.js y Express y sirve como el servidor para la plataforma de salud mental Funpaz. A continuación, encontrarás instrucciones sobre cómo ejecutar el backend, así como cómo configurar las claves de reCAPTCHA y la contraseña de la aplicación de Google.
 
+## Requisitos
+
+1. Nodejs v16.20.2
+2. Express v4.18.2
+3. Cuenta de google
+
 ## Ejecutar el Backend
 
 Para ejecutar el backend de Funpaz, sigue estos pasos:

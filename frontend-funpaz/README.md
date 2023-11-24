@@ -4,9 +4,8 @@
 
 ## Requisitos
 
-Nodejs
-Angular v.16.0.0
-Cuenta de google
+2. Angular v.16.0.0
+3. Cuenta de google
 
 ## Ejecutar el Proyecto
 
