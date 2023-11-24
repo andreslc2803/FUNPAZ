@@ -1,27 +1,79 @@
-# frontend-funpaz
+# Funpaz: Plataforma de Salud Mental
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.4.
+¡Bienvenido al frontend de Funpaz! Funpaz es una plataforma de salud mental desarrollada en Angular, que utiliza reCAPTCHA para garantizar la seguridad. Sigue las instrucciones a continuación para ejecutar el proyecto y obtener las claves de reCAPTCHA necesarias para el frontend.
 
-## Development server
+## Requisitos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Nodejs
+Angular v.16.0.0
+Cuenta de google
 
-## Code scaffolding
+## Ejecutar el Proyecto
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Para ejecutar Funpaz localmente, sigue estos pasos:
 
-## Build
+1. Clona este repositorio:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+   ```bash
+   git clone https://github.com/andreslc2803/FUNPAZ.git
+   ```
 
-## Running unit tests
+2. Ingresa al directorio del proyecto:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+   ```bash
+   cd frontend-funpaz
+   ```
 
-## Running end-to-end tests
+3. Instala las dependencias:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+   ```bash
+   npm install --force
+   ```
 
-## Further help
+4. Inicia la aplicación:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+   ```bash
+   npm start
+   ```
+
+5. Abre tu navegador y visita [http://localhost:4200/](http://localhost:4200/).
+
+¡Ahora deberías tener acceso a la plataforma de salud mental Funpaz localmente!
+
+## Obtener Claves de reCAPTCHA
+
+Para utilizar la funcionalidad de reCAPTCHA en el frontend, necesitarás obtener las claves de API de reCAPTCHA. Sigue estos pasos:
+
+1. Visita el sitio web de [reCAPTCHA](https://www.google.com/recaptcha) de Google.
+
+2. Haz clic en "Administrar reCAPTCHA" y selecciona "Añadir un nuevo sitio".
+
+3. Completa el formulario con la información de Funpaz.
+
+4. Selecciona el tipo de reCAPTCHA que deseas utilizar (por ejemplo, "reCAPTCHA v2").
+
+5. Añade los dominios autorizados para Funpaz (puedes utilizar `localhost:4200` para desarrollo).
+
+6. Acepta los términos de servicio y haz clic en "Enviar".
+
+7. Copia la clave del sitio (Site Key) proporcionadas.
+
+## Configuración de Claves de reCAPTCHA en el Proyecto
+
+1. Abre el archivo de configuración de reCAPTCHA en el proyecto `src/config/config.ts`.
+
+2. Agrega las claves que obtuviste anteriormente:
+
+   ```typescript
+   export const AppConfig = {
+   reCaptchaSiteKey: '';
+   };
+   ```
+
+3. Guarda el archivo y reinicia la aplicación si es necesario.
+
+¡Ahora, Funpaz está configurado para utilizar reCAPTCHA en el frontend para garantizar la seguridad!
+
+## Contribución
+
+¡Agradecemos tus contribuciones! Por favor, crea una rama con tus cambios y envía una solicitud de extracción (pull request) para su revisión.
