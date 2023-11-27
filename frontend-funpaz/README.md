@@ -1,4 +1,4 @@
-# Funpaz: Plataforma de Salud Mental
+# Funpaz: Frontend de la Plataforma de Salud Mental
 
 ¡Bienvenido al frontend de Funpaz! Funpaz es una plataforma de salud mental desarrollada en Angular, que utiliza reCAPTCHA para garantizar la seguridad. Sigue las instrucciones a continuación para ejecutar el proyecto y obtener las claves de reCAPTCHA necesarias para el frontend.
 
