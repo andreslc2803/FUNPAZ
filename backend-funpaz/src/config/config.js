@@ -17,21 +17,21 @@ const SERVER_PORT = process.env.PORT || 3000;
  *
  * @constant {string} SECRET_KEY
  */
-const SECRET_KEY = "6LeJVdAoAAAAABYBB-Qvoej2p0O3UYwtiGqRkWlN";
+const SECRET_KEY = "";
 
 /**
  * Contraseña de la aplicación para servicios de Google.
  *
  * @constant {string} APPLICATION_PASSWORD_GOOGLE
  */
-const APPLICATION_PASSWORD_GOOGLE = "ehlu jjnp fndg qnyr";
+const APPLICATION_PASSWORD_GOOGLE = "";
 
 /**
  * Dirección de correo electrónico asociada a la aplicación.
  *
  * @constant {string} EMAIL
  */
-const EMAIL = "andrescarvajal2803londono@gmail.com";
+const EMAIL = "";
 
 /**
  * Exporta las configuraciones para su uso en otros módulos.
